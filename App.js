@@ -10,6 +10,7 @@ export default function App() {
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image}>
         <Text style={styles.text}>Open up App.js to start working on your app!</Text>
+        <Text style={styles.text}>Done with API integration</Text>
       </ImageBackground>
     </View>
   );
