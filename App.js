@@ -1,37 +1,72 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
-
-
-const image = { uri: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2783&q=80" };
+import { StyleSheet, View, SafeAreaView, Text, Image } from 'react-native';
 
 export default function App() {
-  return (
 
-    <View style={styles.container}>
-      <ImageBackground source={image} style={styles.image}>
-        <Text style={styles.text}>Open up App.js to start working on your app!</Text>
-        <Text style={styles.text}>Done with API integration</Text>
-      </ImageBackground>
-    </View>
+
+  return (
+    <SafeAreaView style={styles.container}>
+
+      <View style={styles.imageLogoContainer}>
+        <Image style={styles.image} source={require('./assets/icon.png')} />
+        <Text style={{ color: 'white', fontSize: 30, fontWeight: 'bold' }}>Let's Talk</Text>
+      </View>
+
+      <View style={styles.view3}>
+
+      </View>
+
+      <View style={styles.view1}>
+        <Text style={styles.text}>Login</Text>
+      </View>
+
+      <View style={styles.view2}>
+        <Text style={styles.text}>Register</Text>
+      </View>
+
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#2B3A55',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
   },
-  image: {
-    flex: 1,
-    width: "100%",
-    alignItems: 'center',
-    justifyContent: 'center'
+  imageLogoContainer: {
+    position: 'absolute',
+    top: 70,
+    alignItems: 'center'
+  },
+  view1: {
+    width: '100%',
+    height: 70,
+    backgroundColor: '#9088D4',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  view2: {
+    width: '100%',
+    height: 70,
+    backgroundColor: '#B6C9F0',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  view3: {
+    height: '30%',
+    width: '80%',
+    backgroundColor: 'gold',
+    position: 'absolute',
+    top: '40%',
   },
   text: {
-    fontSize: 25,
-    fontWeight: '500',
-    color: 'white'
+    fontSize: 20,
+    color: '#290001',
+    fontWeight: 'bold'
+  },
+  image: {
+    width: 100,
+    height: 100
   }
 });
