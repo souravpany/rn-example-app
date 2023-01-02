@@ -11,7 +11,7 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <SafeAreaView>
-        <Text>Hello From Mobile App {value}</Text>
+        <Text>Hello Mobile App {value}</Text>
       </SafeAreaView>
       {/*
       <Navigation /> */}
