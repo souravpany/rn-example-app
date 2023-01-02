@@ -24,17 +24,19 @@ const DATA = [
   },
 ];
 
-const Item = ({ title }) => (
-  <TouchableOpacity style={welcomeStyles.item} onPress={() => sectionItemClick(title)}>
-    <Text style={welcomeStyles.title}>{title}</Text>
-  </TouchableOpacity>
-);
+const WelcomeScreen = ({ navigation }) => {
+  const Item = ({ title }) => (
+    <TouchableOpacity style={welcomeStyles.item} onPress={() => sectionItemClick(title)}>
+      <Text style={welcomeStyles.title}>{title}</Text>
+    </TouchableOpacity>
+  );
 
-const sectionItemClick = (title) => {
-  console.log(title);
-};
+  const sectionItemClick = (title) => {
+    navigation.push("CarBranch", {
+      title: title,
+    });
+  };
 
-const WelcomeScreen = () => {
   return (
     <View style={welcomeStyles.rootContainer}>
       <Text style={welcomeStyles.welcomeTitle}>Welcome!</Text>

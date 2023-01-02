@@ -3,9 +3,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Colors } from '../constants/styles';
 
 
+import CarBranchScreen from '../pages/branch/CarBranchScreen';
 import LoginScreen from '../pages/login/LoginScreen';
 import SignUpScreen from '../pages/signup/SignUpScreen';
 import WelcomeScreen from '../pages/welcome/WelcomeScreen';
+
 
 
 
@@ -56,6 +58,7 @@ const Navigation = () => {
                 initialRouteName='Login'
                 screenOptions={{
                     headerStyle: { backgroundColor: Colors.primary500 },
+                    headerTitleStyle: { fontWeight: 'bold' },
                     headerTintColor: 'white',
                     contentStyle: { backgroundColor: Colors.primary100 },
                 }}
@@ -63,6 +66,7 @@ const Navigation = () => {
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Signup" component={SignUpScreen} />
                 <Stack.Screen name="Welcome" component={WelcomeScreen} />
+                <Stack.Screen name="CarBranch" component={CarBranchScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
