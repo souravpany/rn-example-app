@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "run-web": "react-scripts start"
+    "dev": "react-scripts start"
   },
   "dependencies": {
     "@expo/match-media": "^0.4.0",
@@ -18,8 +18,10 @@
     "expo-notifications": "~0.17.0",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
+    "react-calendar": "^4.0.0",
     "react-dom": "^18.1.0",
     "react-native": "0.70.5",
+    "react-native-calendars": "^1.1293.0",
     "react-native-safe-area-context": "4.4.1",
     "react-native-screens": "~3.18.0",
     "react-native-web": "^0.18.10",

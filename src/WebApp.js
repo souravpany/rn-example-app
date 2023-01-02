@@ -1,20 +1,10 @@
 import React from 'react';
-// import { value } from './shared/Header';
-
-const WebAppTitle = () => {
-    return (
-        <div>
-            <h2 style={{ color: '#9400d3', fontSize: '32' }}>
-                Hello Web App
-            </h2>
-        </div>
-    );
-};
+import Home from './web/Home';
 
 const App = () => {
     return (
         <>
-            <WebAppTitle />
+            <Home />
         </>
     );
 };
