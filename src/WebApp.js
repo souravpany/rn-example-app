@@ -1,7 +1,7 @@
 import React from 'react';
-import Home from './web/Home';
+import Home from './pages/Home';
 
-const App = () => {
+const WebApp = () => {
     return (
         <>
             <Home />
@@ -9,4 +9,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default WebApp;

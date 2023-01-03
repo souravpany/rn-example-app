@@ -2,13 +2,14 @@ import '@expo/match-media';
 import Navigation from './navigation/navigation';
 import Home from './pages/home/Home';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, Text, FlatList, ActivityIndicator, View, StyleSheet } from 'react-native';
+import { SafeAreaView, Text, FlatList, ActivityIndicator, View, StyleSheet, Platform } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 import React, { useEffect, useState } from 'react';
 import { store } from './redux/store';
 import { useDispatch, useSelector, Provider } from 'react-redux';
 import { fetchPosts } from './redux/feature/PostSlice';
+import './App.module.css';
 
 export default function App() {
 
@@ -36,6 +37,18 @@ export default function App() {
     useEffect(() => {
       getMovies();
     }, []);
+
+    if (Platform.OS === "web") {
+      if (isLoading) return <div>Loading</div>;
+
+      return posts.map((item) => {
+        return (
+          <h2 key={(item) => item.id}>
+            {item.id} {item.title}
+          </h2>
+        );
+      });
+    }
 
     return (
       <SafeAreaView>
