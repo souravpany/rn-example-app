@@ -2,33 +2,53 @@ import '@expo/match-media';
 import Navigation from './navigation/navigation';
 import Home from './pages/home/Home';
 import { StatusBar } from 'expo-status-bar';
-import { value } from './redux/Header';
 import { SafeAreaView, Text, FlatList, ActivityIndicator, View, StyleSheet } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 import React, { useEffect, useState } from 'react';
+import { store } from './redux/store';
+import { useDispatch, useSelector, Provider } from 'react-redux';
+import { fetchPosts } from './redux/feature/PostSlice';
 
 export default function App() {
 
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
 
+  const Home = () => {
+    const dispatch = useDispatch()
+    const { posts } = useSelector((state) => state.postDetails)
 
-  const getMovies = async () => {
-    try {
-      const response = await fetch('http://jsonplaceholder.typicode.com/posts');
-      const json = await response.json();
-      setData(json);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
+    const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
+
+    const getMovies = async () => {
+      try {
+        const response = await fetch('http://jsonplaceholder.typicode.com/posts');
+        const json = await response.json();
+        //setData(json);
+        dispatch(fetchPosts(json))
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     }
+
+    useEffect(() => {
+      getMovies();
+    }, []);
+
+    return (
+      <SafeAreaView>
+        <Calendar />
+        {isLoading ? <ActivityIndicator /> : (
+          <FlatList data={posts} renderItem={ItemView} keyExtractor={(item) => item.id} />
+        )}
+
+      </SafeAreaView>
+    )
+
   }
 
-  useEffect(() => {
-    getMovies();
-  }, []);
 
   // Flat list item component
   const ItemView = ({ item }) => {
@@ -44,14 +64,10 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <SafeAreaView>
-        <Text>Hello Mobile App {value}</Text>
-        <Calendar />
-        {isLoading ? <ActivityIndicator /> : (
-          <FlatList data={data} renderItem={ItemView} keyExtractor={(item) => item.id} />
-        )}
+      <Provider store={store}>
+        <Home />
+      </Provider>
 
-      </SafeAreaView>
       {/*
       <Navigation /> */}
       {/* <Home /> */}

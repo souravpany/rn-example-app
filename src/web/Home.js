@@ -1,10 +1,15 @@
 import React from "react";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { value } from "../redux/Header";
 import { useEffect, useState } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPosts } from "../redux/feature/PostSlice";
+
 const Home = () => {
+
+  const dispatch = useDispatch()
+  const { posts } = useSelector((state) => state.postDetails)
 
   const [data, setData] = useState([]);
 
@@ -13,7 +18,8 @@ const Home = () => {
     try {
       const response = await fetch('http://jsonplaceholder.typicode.com/posts');
       const json = await response.json();
-      setData(json);
+      dispatch(fetchPosts(json))
+      //setData(json);
     } catch (error) {
       console.error(error);
     } finally {
@@ -27,10 +33,10 @@ const Home = () => {
 
   return (
     <div>
-      <h2 style={{ color: "#9400d3", fontSize: "32" }}>Hello Web App {value}</h2>
+      <h2 style={{ color: "#9400d3", fontSize: "32" }}>Hello Web App</h2>
       <Calendar />
 
-      {data.map((item) => {
+      {posts.map((item) => {
         return <h2 style={{ fontSize: "20" }} key={(item) => item.id}>{item.id} {item.title}</h2>
       })}
 
